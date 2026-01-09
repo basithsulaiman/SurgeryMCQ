@@ -1,21 +1,161 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Quiz App</title>
+    <title>NEETSS SURGICAL GROUP</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
-    <h1>MCQ Quiz</h1>
-    <div id="quiz-container"></div>
-    <button onclick="submitQuiz()">Submit</button>
-    <div id="report-container" style="display:none;"></div>
-    <script src="/static/script.js"></script>
-    <script>
-        const BOOKMARKED_MODE = {{ 'true' if bookmarked_mode else 'false' }};
-    </script>
-    <a href="/bookmarked">🔖 View Bookmarked Quiz</a>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="exam-title">NEETSS-SURGERY </div>
+    <div class="timer">Time Left: <span id="time">02:59:18</span></div>
+
+    <a href="/bookmarked-quiz"
+   style="
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+   ">
+   🔖 Bookmarked Questions
+</a>
+
+</div>
+
+
+<!-- START SCREEN -->
+<div id="start-screen" style="padding:40px; text-align:center;">
+
+    <h2>Select Question Set</h2>
+
+    <label>
+        <input type="radio" name="qcount" value="20" checked>
+        20 Questions
+    </label><br><br>
+
+    <label>
+        <input type="radio" name="qcount" value="50">
+        50 Questions
+    </label><br><br>
+
+    <label>
+        <input type="radio" name="qcount" value="100">
+        100 Questions
+    </label><br><br>
+
+    <label>
+        <input type="radio" name="qcount" value="150">
+        150 Questions
+    </label><br><br>
+
+    <button onclick="startTest()" style="
+        padding:12px 25px;
+        font-size:16px;
+        background:#4caf50;
+        color:white;
+        border:none;
+        cursor:pointer;
+        border-radius:4px;
+    ">
+        START TEST
+    </button>
+
+</div>
+
+<div class="container" id="exam-container" style="display:none;">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <div class="question-header">
+            <span>Q No. <b id="qno"></b></span>
+            <span>Type: MCQ Single</span>
+            <span>Marks: 4 | Neg: 1</span>
+        </div>
+
+        <div style="margin:10px 0;">
+          <button id="bookmark-btn"
+            onclick="toggleBookmark()"
+            style="
+                background:#fff;
+                border:1px solid #999;
+                padding:6px 12px;
+                cursor:pointer;
+                border-radius:4px;
+                  "  >
+             🔖 Bookmark
+          </button>
+        </div>
+
+        <!-- QUESTION TEXT -->
+        <div class="question-text" id="question"></div>
+
+        <!-- OPTIONS (FILLED BY JS) -->
+        <div class="options" id="options"></div>
+
+        <div id="review-nav" style="margin-top:15px; display:none;">
+        <button onclick="prevReview()">⬅ Previous</button>
+        <button onclick="nextReview()">Next ➡</button>
+          </div>
+
+
+        <!-- CONTROLS -->
+        <div class="controls">
+            <button class="review" onclick="markReviewNext()">
+                Mark for Review & Next
+            </button>
+
+            <button class="clear" onclick="clearResponse()">
+                Clear Response
+            </button>
+
+            <button class="save" onclick="saveNext()">
+                Save & Next
+            </button>
+        </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <h3>GENERAL SURGERY</h3>
+
+        <div class="legend">
+            <span class="answered">Answered</span>
+            <span class="not-visited">Not Visited</span>
+            <span class="visited">Visited</span>
+        </div>
+
+            <div id="review-filters" style="margin-bottom:10px; display:none;">
+            <button onclick="setReviewFilter('all')">Show All</button>
+            <button onclick="setReviewFilter('wrong')">Show Wrong</button>
+            <button onclick="setReviewFilter('unanswered')">Show Unanswered</button>
+            <button onclick="setReviewFilter('bookmarked')">Show Bookmarked</button>
+        </div>    
+
+        <!-- QUESTION PALETTE -->
+        <div class="palette" id="palette"></div>
+
+        <button class="submit" onclick="submitTest()">
+            SUBMIT TEST
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MAIN JS -->
+ <script>
+    const BOOKMARKED_MODE = {{ 'true' if bookmarked_mode else 'false' }};
+    const BOOKMARKED_ONLY = {{ 'true' if bookmarked_only else 'false' }};
+</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
 
 </body>
 </html>
