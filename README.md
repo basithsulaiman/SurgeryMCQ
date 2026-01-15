@@ -61,8 +61,8 @@ Port (default: 3306)
 mysql -u root -p
 
 #🔹 Create Database
-CREATE DATABASE mcq_db;
-USE mcq_db;
+CREATE DATABASE quizdb;
+USE quizdb;
 
 
 Exit MySQL:
@@ -70,14 +70,14 @@ Exit MySQL:
 exit
 
 #🔹 Import SQL Dump
-mysql -u root -p mcq_db < mcq_db_dump.sql
+mysql -u root -p quizdb < quizdb_dump.sql
 
 
 ✔️ This creates all tables and imports MCQs automatically.
 
 #🔹 Verify Import
 mysql -u root -p
-USE mcq_db;
+USE quizdb;
 SHOW TABLES;
 SELECT * FROM questions LIMIT 5;
 
@@ -137,7 +137,7 @@ mcq_app/
 ├── static/
 │   ├── style.css
 │   └── script.js
-├── mcq_db_dump.sql
+├── quizdb_dump.sql
 ├── requirements.txt
 └── README.md
 
@@ -149,7 +149,7 @@ db_config = {
     "host": "localhost",
     "user": "root",
     "password": "your_mysql_password",
-    "database": "mcq_db"
+    "database": "quizdb"
 }
 
 
