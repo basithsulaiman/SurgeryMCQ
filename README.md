@@ -28,104 +28,108 @@ This README explains the **complete setup from scratch**:
 ### 🔹 Ubuntu / Linux
 Check installation:
 
-mysql --version
+    mysql --version
 
 
 Start MySQL:
 
-sudo systemctl start mysql
-sudo systemctl enable mysql
+    sudo systemctl start mysql
+    sudo systemctl enable mysql
 
 
 (Optional but recommended)
 
-sudo mysql_secure_installation
+    sudo mysql_secure_installation
 
-🔹 Windows / macOS
+### 🔹 Windows / macOS
 
 Download MySQL from:
 https://dev.mysql.com/downloads/mysql/
 
-Install MySQL Server
+- Install MySQL Server
 
-Note down:
+#### Note down:
 
-Username
+- Username
 
-Password
+- Password
 
-Port (default: 3306)
+- Port (default: 3306)
 
-##2️⃣ Creating Database & Importing SQL Dump
-#🔹 Login to MySQL
-mysql -u root -p
+2️⃣ Creating Database & Importing SQL Dump
+--
+### 🔹 Login to MySQL
+    mysql -u root -p
 
-#🔹 Create Database
-CREATE DATABASE quizdb;
-USE quizdb;
+### 🔹 Create Database
+    CREATE DATABASE quizdb;
+    USE quizdb;
 
 
-Exit MySQL:
+    Exit MySQL:
 
-exit
+    exit
 
-#🔹 Import SQL Dump
-mysql -u root -p quizdb < quizdb_dump.sql
+### 🔹 Import SQL Dump
+    mysql -u root -p quizdb < quizdb_dump.sql
 
 
 ✔️ This creates all tables and imports MCQs automatically.
 
-#🔹 Verify Import
-mysql -u root -p
-USE quizdb;
-SHOW TABLES;
-SELECT * FROM questions LIMIT 5;
+### 🔹 Verify Import
+    mysql -u root -p
+    USE quizdb;
+    SHOW TABLES;
+    SELECT * FROM questions LIMIT 5;
 
-##3️⃣ Installing VS Code
-
-#Download VS Code:
+3️⃣ Installing VS Code
+--
+### Download VS Code:
 👉 https://code.visualstudio.com/
 
-Recommended Extensions
+##### Recommended Extensions
 
-Python
+###### Python
 
-MySQL
+###### MySQL
 
-Pylance
+###### Pylance
 
-##4️⃣ Installing Python & Virtual Environment
+4️⃣ Installing Python & Virtual Environment
+--
+### Check Python:
 
-Check Python:
-
-python3 --version
-
-
-Create virtual environment:
-
-python3 -m venv venv
-
-
-Activate it:
-
-Linux / macOS
-
-source venv/bin/activate
+        python3 --version
+        
+        
+### Create virtual environment:
+        
+        python3 -m venv venv
 
 
-Windows
+### Activate it:
 
-venv\Scripts\activate
+#### Linux / macOS
 
-##5️⃣ Installing Python Dependencies
-pip install flask mysql-connector-python
+    source venv/bin/activate
+
+
+#### Windows
+
+    venv\Scripts\activate
+
+5️⃣ Installing Python Dependencies
+--
+    pip install flask mysql-connector-python
 
 
 Or using requirements file:
 
-pip install -r requirements.txt
+     pip install -r requirements.txt
 
-##6️⃣ Project Structure
+6️⃣ Project Structure
+--
+```
 mcq_app/
 │
 ├── app.py
@@ -140,80 +144,78 @@ mcq_app/
 ├── quizdb_dump.sql
 ├── requirements.txt
 └── README.md
+```
 
-##7️⃣ Database Configuration
-
+7️⃣ Database Configuration
+--
 Edit db_config.py:
-
+```
 db_config = {
     "host": "localhost",
     "user": "root",
     "password": "your_mysql_password",
     "database": "quizdb"
 }
-
+```
 
 ⚠️ Ensure credentials match your MySQL setup.
 
-##8️⃣ Running the MCQ Application
+8️⃣ Running the MCQ Application
+--
+### From project folder:
+    python app.py
+### Terminal output:
+    Running on http://127.0.0.1:5000/
 
-From project folder:
-
-python app.py
-
-
-Terminal output:
-
-Running on http://127.0.0.1:5000/
-
-
-Open browser:
+### Open browser:
 
 http://127.0.0.1:5000
 
-##9️⃣ Common Errors & Fixes
+9️⃣ Common Errors & Fixes
+--
 ❌ MySQL connection error
 
 ✔️ Check:
 
-MySQL service is running
+- MySQL service is running
 
-Username/password correct
+- Username/password correct
 
-Database name correct
+- Database name correct
 
 ❌ mysql-connector error
-pip install mysql-connector-python
+
+    pip install mysql-connector-python
 
 ❌ Port already in use
 
-Change port in app.py:
+- Change port in app.py:
 
-app.run(port=5001)
+- app.run(port=5001)
 
-##🔟 Features
+🔟 Features
+--
+- MCQs stored in MySQL database
 
-MCQs stored in MySQL database
+- Review mode with Next / Previous navigation
 
-Review mode with Next / Previous navigation
+- Keyboard navigation support
 
-Keyboard navigation support
+- Clean and modular codebase
 
-Clean and modular codebase
+- Easy SQL-based data import
 
-Easy SQL-based data import
+# 🚀 Future Enhancements
 
-🚀 Future Enhancements
+- User authentication
 
-User authentication
+- Bookmark questions
 
-Bookmark questions
+- Performance analytics
 
-Performance analytics
+- AI-based question recommendations
 
-AI-based question recommendations
-
-👨‍⚕️ Author
+# 👨‍⚕️ Author
 
 Basith Sulaiman
 ENT & Head–Neck Oncosurgeon
