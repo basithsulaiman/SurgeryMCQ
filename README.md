@@ -217,8 +217,8 @@ http://127.0.0.1:5000
 
 # 👨‍⚕️ Author
 
-Basith Sulaiman
-ENT & Head–Neck Oncosurgeon
-Developer – Medical Education Tools
+- Basith Sulaiman MS-DNB-MCh-MNAMS
+- ENT & Head–Neck Oncosurgeon(AIIMS New Delhi)
+- Hobbyist Programmer – Medical Education Tools
 
 
